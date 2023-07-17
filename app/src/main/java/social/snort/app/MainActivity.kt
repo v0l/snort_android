@@ -21,6 +21,7 @@ class MainActivity : ComponentActivity() {
 
         webView.settings.domStorageEnabled = true
         webView.settings.javaScriptEnabled = true
+        webView.settings.databaseEnabled = true;
 
         val assetLoader = WebViewAssetLoader.Builder()
             .addPathHandler("/", WebViewAssetLoader.AssetsPathHandler(this))
@@ -45,8 +46,8 @@ private class LocalContentWebViewClient(private val assetLoader: WebViewAssetLoa
     }
 
     override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
-        if(request.url.host.equals("appassets.androidplatform.net")) {
-            return false;
+        if (request.url.host.equals("appassets.androidplatform.net")) {
+            return false
         }
         val intent = Intent(Intent.ACTION_VIEW, request.url)
         view.context.startActivity(intent)
