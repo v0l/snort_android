@@ -39,7 +39,6 @@ class Nip7Extension {
             ?: throw error("Missing private key")
 
         val json = Json { ignoreUnknownKeys = true }
-        println(ev)
         val evParsed = json.decodeFromString<Event>(ev)
 
         val idArray = buildJsonArray {
@@ -53,7 +52,6 @@ class Nip7Extension {
             add(evParsed.content)
         }.toString()
 
-        println(idArray)
         val evId = MessageDigest.getInstance("SHA-256").digest(idArray.encodeToByteArray())
         var sig = Hex.encode(secp256k1.signSchnorr(evId, Hex.decode(key), null))
 

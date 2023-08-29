@@ -23,11 +23,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         val webView = WebView(this)
-        setContentView(webView)
 
-        webView.settings.domStorageEnabled = true
-        webView.settings.javaScriptEnabled = true
-        webView.settings.databaseEnabled = true;
         val getContent =
             registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
                 if (uri != null) {
@@ -57,6 +53,10 @@ class MainActivity : ComponentActivity() {
                 return true
             }
         }
+        webView.settings.domStorageEnabled = true
+        webView.settings.javaScriptEnabled = true
+        webView.settings.databaseEnabled = true;
+        setContentView(webView)
         webView.loadUrl("https://appassets.androidplatform.net/")
     }
 }
