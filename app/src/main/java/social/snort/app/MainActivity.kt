@@ -18,11 +18,12 @@ import androidx.webkit.WebViewClientCompat
 
 class MainActivity : ComponentActivity() {
     private var getContentCallback: ValueCallback<Array<Uri>>? = null
+    private lateinit var webView: WebView;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val webView = WebView(this)
+        webView = WebView(this)
 
         val getContent =
             registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
@@ -58,6 +59,12 @@ class MainActivity : ComponentActivity() {
         webView.settings.databaseEnabled = true;
         setContentView(webView)
         webView.loadUrl("https://appassets.androidplatform.net/")
+    }
+
+    override fun onBackPressed() {
+        if (webView.canGoBack() && webView.isFocused) {
+            webView.goBack()
+        }
     }
 }
 

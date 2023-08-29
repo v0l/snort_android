@@ -12,7 +12,7 @@ android {
         applicationId "social.snort.app"
         minSdk 26
         targetSdk 33
-        versionCode 4
+        versionCode 5
         versionName "1.0.13"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
