@@ -26,3 +26,6 @@
 -dontwarn com.google.errorprone.annotations.RestrictedApi
 -dontwarn javax.annotation.Nullable
 -dontwarn javax.annotation.concurrent.GuardedBy
+
+# preserve access to native classses
+-keep class fr.acinq.secp256k1.** { *; }
