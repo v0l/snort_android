@@ -1,6 +1,7 @@
 package social.snort.app
 
 import android.content.Intent
+import android.content.Intent.ACTION_VIEW
 import android.net.Uri
 import android.os.Bundle
 import android.webkit.PermissionRequest
@@ -54,11 +55,22 @@ class MainActivity : ComponentActivity() {
                 return true
             }
         }
-        webView.settings.domStorageEnabled = true
-        webView.settings.javaScriptEnabled = true
+        webView.settings.domStorageEnabled = true;
+        webView.settings.javaScriptEnabled = true;
         webView.settings.databaseEnabled = true;
+        webView.setRendererPriorityPolicy(WebView.RENDERER_PRIORITY_IMPORTANT, true);
         setContentView(webView)
-        webView.loadUrl("https://appassets.androidplatform.net/")
+
+        if (intent.data != null && intent.action === ACTION_VIEW) {
+            webView.loadUrl(
+                Uri.withAppendedPath(
+                    Uri.parse("https://appassets.androidplatform.net/"),
+                    intent.data!!.path
+                ).toString()
+            )
+        } else {
+            webView.loadUrl("https://appassets.androidplatform.net/")
+        }
     }
 
     override fun onBackPressed() {
