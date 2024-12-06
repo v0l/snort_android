@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace 'social.snort.app'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "social.snort.app"
         minSdk 26
-        targetSdk 33
+        targetSdk 34
         versionCode 20
         versionName "0.3.0"
 
